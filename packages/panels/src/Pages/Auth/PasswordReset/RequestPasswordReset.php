@@ -80,7 +80,7 @@ class RequestPasswordReset extends SimplePage
             },
         );
 
-        if ($status === Password::RESET_THROTTLED) {
+        if (in_array($status, [Password::RESET_THROTTLED, Password::INVALID_USER])) {
             Notification::make()
                 ->title(__($status))
                 ->danger()
